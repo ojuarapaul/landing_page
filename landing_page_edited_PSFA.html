@@ -1,0 +1,470 @@
+<!---This part goes in settings - don't leave in HTML - CodePen--->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Page</title>
+  <link href=' http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <script src="https://kit.fontawesome.com/51558fce96.js" crossorigin="anonymous"></script>
+</head>
+
+<style>
+  /* The following "*" is a CSS reset. Different browsers use different default margins, causing sites to look different by margins. The * means "all elements" (a universal selector), so we are setting all elements to have zero margins, and zero padding, thus making them look the same in all browsers.*/
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #eee;
+    font-family: 'Lato', sans-serif;
+    background-image: url(https://i.imgur.com/7V652Cd.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: 100%;
+    font-family: 'Montserrat', arial, serif;
+    font-size: 1rem;
+    text-align: center;
+    color: aliceblue;
+  }
+
+  #page-wrapper {
+    position: relative;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /** global classes styling **/
+
+  .container {
+    max-width: 1000px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .btn {
+    padding: 0 20px;
+    height: 40px;
+    font-size: 1em;
+    font-weight: 900;
+    text-transform: uppercase;
+    border: 8px black solid;
+    border-radius: 2px;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .grid {
+    display: flex;
+  }
+
+  header {
+    position: fixed;
+    fill-opacity: 50%;
+    top: 0;
+    min-height: 75px;
+    padding: 0px 50px;
+    display: flex;
+    /*justify-content: space-around;*/
+    align-items: center;
+    background-color: rgb(135, 111, 1);
+  }
+
+  @media (max-width: 600px) {
+    S header {
+      flex-wrap: wrap;
+    }
+  }
+
+  .logo {
+    width: 60vw;
+  }
+
+  @media (max-width: 100px) {
+    .logo {
+      margin-top: 15px;
+      width: 100%;
+      position: relative;
+    }
+  }
+
+  .logo>img {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 20px;
+  }
+
+  @media (max-width: 650px) {
+    .logo>img {
+      margin: 0 auto;
+    }
+  }
+
+  nav {
+    font-weight: 400;
+  }
+
+  @media (max-width: 650px) {
+    nav {
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    nav li {
+      padding-bottom: 5px;
+    }
+  }
+
+  nav>ul {
+    width: 35vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  @media (max-width: 650px) {
+    nav>ul {
+      flex-direction: column;
+    }
+  }
+
+  #hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px;
+    margin-top: 40px;
+  }
+
+
+  #hero>h1 {
+    font-size: 2.5em;
+    margin-top: 80px;
+    margin-bottom: 0px;
+    word-wrap: break-word;
+  }
+
+  #hero>h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    word-wrap: break-word;
+  }
+
+  #hero input[type='email'] {
+    max-width: 275px;
+    width: 100%;
+    padding: 5px;
+  }
+
+  #hero input[type='submit'] {
+    max-width: 150px;
+    width: 100%;
+    height: 30px;
+    margin: 15px 0;
+    border: 0;
+    background-color: #f1c40f;
+  }
+
+  #hero input[type='submit']:hover {
+    background-color: orange;
+    transition: background-color 1s;
+  }
+
+  @media (max-width: 650px) {
+    #hero {
+      margin-top: 120px;
+    }
+  }
+
+  #features {
+    margin-top: 100px;
+  }
+
+  #features .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 125px;
+    width: 20vw;
+    color: darkorange;
+  }
+
+  @media (max-width: 550px) {
+    #features .icon {
+      display: none;
+    }
+  }
+
+  #features .desc {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    height: 125px;
+    width: 80vw;
+    padding: 20px;
+  }
+
+  @media (max-width: 550px) {
+    #features .desc {
+      width: 100%;
+      text-align: center;
+      padding: 0;
+      height: 150px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    #features {
+      margin-top: 50;
+    }
+  }
+
+  #how-it-works {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+
+  #how-it-works>iframe {
+    max-width: 560px;
+    width: 100%;
+  }
+
+  #pricing {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: calc(100% / 3);
+    margin: 10px;
+    border: 1px solid #000;
+    border-radius: 3px;
+  }
+
+  .product>.level {
+    background-color: #ddd;
+    color: black;
+    padding: 15px 0;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .product>h2 {
+    margin-top: 15px;
+    color: black;
+  }
+
+  .product>ol {
+    margin: 15px 0;
+    color: black;
+  }
+
+  .product>ol>li {
+    padding: 5px 0;
+    color: black;
+  }
+
+  .product>button {
+    border: 0;
+    margin: 15px 0;
+    background-color: #f1c40f;
+    font-weight: 400;
+  }
+
+  .product>button:hover {
+    background-color: orange;
+    transition: background-color 1s;
+  }
+
+  @media (max-width: 800px) {
+    #pricing {
+      flex-direction: column;
+    }
+
+    .product {
+      max-width: 300px;
+      width: 100%;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+  }
+
+  footer {
+    margin-top: 50px;
+    float: inline-end;
+    /* position:relative;*/
+    background-color: rgb(135, 111, 1);
+    padding: 20px;
+  }
+
+  footer>ul {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  footer>ul>li {
+    padding: 0 10px;
+  }
+
+  footer>span {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.9em;
+    /*color: #444;*/
+  }
+</style>
+
+
+<!--<From now on goes in HTML - CodePen>-->
+
+<body>
+  <html>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <div id="page-wrapper">
+    <header id="header">
+      <div class="logo">
+        <img id="header-img" src="https://i.imgur.com/BpYIxvK.png" alt="Van BT logo" />
+      </div>
+
+      <nav id="nav-bar">
+        <ul>
+          <li><a class="nav-link" href="#features">Our Features</a></li>
+          <li><a class="nav-link" href="#how-it-works">Watch a Video</a></li>
+          <li><a class="nav-link" href="#pricing">Pricing</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container"></div>
+
+    <section id="hero">
+      <br><br><br>
+      <h1>Home of Vancouver Beach Tennis!</h1>
+      <h2>We want you to play BT with us!</h2>
+      <form id="form" action="https://www.freecodecamp.com/email-submit">
+        <input name="email" id="email" type="email" placeholder="Enter your email address" required />
+
+        <input id="submit" type="submit" value="Get Started" class="btn" />
+      </form>
+    </section>
+
+    <div class="container">
+      <section id="features">
+        <div class="grid">
+          <div class="icon"><i class="fa-solid fa-3x fa-baseball"></i></div>
+          <div class="desc">
+            <h2>Begginers, Kids and Avanced Classes</h2>
+            <p>
+              Our specially developed method takes everyone's skills into account and are suitable to all levels.
+            </p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="icon"><i class="fa-solid fa-3x fa-heart-pulse"></i></div>
+          <div class="desc">
+            <h2>Beach Tennis - A Complete Workout</h2>
+            <p>
+              Practicing Beach Tennis will improve your fitness level, strenght and cardio capabilities.
+            </p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="icon">
+            <i class="fa-solid fa-3x fa-table-cells"></i>
+          </div>
+          <div class="desc">
+            <h2>Learn with Sil, an accomplished BT Athlete from Brazil</h2>
+            <p>
+              Sil Dantas won a number of Beach Tennis competitions and has a Diploma in Kinesiology for a safe,
+              injury-free practice.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="how-it-works">
+        <iframe id="video" height="315" src="https://www.youtube.com/embed/xo168YvNTXA" title="YouTube video player"
+          frameborder="0" allowfullscreen></iframe>
+      </section>
+      <section id="pricing">
+        <div class="product" id="tenor">
+          <div class="level">Individual Classes</div>
+          <h2>$80/hour</h2>
+          <ol>
+            <li>Only one athlete.</li>
+            <li>Best for people</li>
+            <li>with specific needs</li>
+            <li>and Beginners</li>
+          </ol>
+          <button class="btn">Select</button>
+        </div>
+        <div class="product" id="bass">
+          <div class="level">Doubles</div>
+          <h2>$150/hour</h2>
+          <ol>
+            <li>2 athletes on court</li>
+            <li>Enhance team skills</li>
+            <li>Form your team</li>
+            <li>Know your partner</li>
+          </ol>
+          <button class="btn">Select</button>
+        </div>
+        <div class="product" id="valve">
+          <div class="level">Groups</div>
+          <h2>$250/hour</h2>
+          <ol>
+            <li>Groups of 4 or 6</li>
+            <li>Cheapest option</li>
+            <li>Great to socialize</li>
+            <li>More dynamic</li>
+          </ol>
+          <button class="btn">Select</button>
+        </div>
+      </section>
+      <footer>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <span>Copyright 2022, Ojuarapaul Responsive Websites</span>
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>
